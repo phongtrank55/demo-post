@@ -38,11 +38,9 @@ class InvoiceSeeder extends Seeder
 
         DB::table('invoice_details')->insert([
             ['invoice_id' => 2, 'product_type' => 'phone', 'product_id' => 1, 'quantity' => 1, 'price' => 10000000],
-            ['invoice_id' => 4, 'product_type' => 'phone', 'product_id' => 2, 'quantity' => 1, 'price' => 12000000],
-            ['invoice_id' => 4, 'product_type' => 'fit', 'product_id' => 1, 'quantity' => 2, 'price' => 200000],
-            ['invoice_id' => 5, 'product_type' => 'accessory', 'product_id' => 1, 'quantity' => 1, 'price' => 30000],
+            ['invoice_id' => 4, 'product_type' => 'fit', 'product_id' => 2, 'quantity' => 2, 'price' => 200000],
             ['invoice_id' => 5, 'product_type' => 'accessory', 'product_id' => 2, 'quantity' => 2, 'price' => 50000],
-            ['invoice_id' => 6, 'product_type' => 'fit', 'product_id' => 2, 'quantity' => 1, 'price' => 50000],
+            ['invoice_id' => 7, 'product_type' => 'accessory', 'product_id' => 3, 'quantity' => 1, 'price' => 50000],
         ]);
     }
 }
