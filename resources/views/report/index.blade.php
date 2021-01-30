@@ -10,7 +10,7 @@
                 <tr>
                     <th class="text-center">#</th>
                     <th class="text-center">Hoá đơn</th>
-                    <th>ID sản phẩm</th>
+                    <th class="text-center">ID sản phẩm</th>
                     <th class="text-center">Sản phẩm</th>
                     <th class="text-center">Đơn giá</th>
                     <th class="text-center">Số lượng </th>
@@ -26,19 +26,17 @@
                             @switch($item->product_type)
                                 @case('phone')
                                     <span class="label label-info">Điện thoại</span>
-                                    {{ $item->phone->name }}
                                     @break
                                 @case('fit')
                                     <span class="label label-success">Phụ kiện</span>
-                                    {{ $item->fit->name }}
                                     @break
                                 @case('accessory')
                                     <span class="label label-warning">Linh kiện</span>
-                                    {{ $item->accessory->name }}
                                     @break
                                 @default
 
                             @endswitch
+                            {{ $item->product->name }}
                         </td>
                         <td class="text-right">{{ format_price($item->price) }}</td>
                         <td class="text-center">{{ $item->quantity }}</td>

@@ -24,5 +24,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        \Illuminate\Database\Eloquent\Relations\Relation::morphMap([
+            'phone' => \App\Models\Phone::class,
+            'fit' => \App\Models\Fit::class,
+            'accessory' => \App\Models\Accessory::class,
+        ]);
     }
 }

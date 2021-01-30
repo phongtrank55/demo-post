@@ -8,7 +8,7 @@ use App\Models\InvoiceDetail;
 class ReportController extends Controller
 {
     public function index(){
-        $report = InvoiceDetail::with('phone', 'fit', 'accessory')->get();
+        $report = InvoiceDetail::with('product')->get();
         return view('report.index', compact('report'));
     }
 }

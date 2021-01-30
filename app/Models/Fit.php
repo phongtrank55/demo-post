@@ -8,5 +8,3 @@ class Fit extends Model
 {
     protected $guarded = ['id'];
 }
-
-

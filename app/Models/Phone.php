@@ -8,5 +8,3 @@ class Phone extends Model
 {
     protected $guarded = ['id'];
 }
-
-
