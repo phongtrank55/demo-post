@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/social/{provider}', 'Auth\LoginController@redirect')->name('auth.social');
+Route::get('/callback/{provider}', 'Auth\LoginController@callback')->name('auth.social.callback');
