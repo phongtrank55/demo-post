@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+// use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Socialite;
 use Auth;
 use Exception;
@@ -25,7 +25,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    // use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -45,6 +45,7 @@ class LoginController extends Controller
     }
 
     public function callback($provider) {
+        \Log::debug("message: ".$provider);
         $getInfo = Socialite::driver($provider)->stateless()->user();
         $link = $_COOKIE['link_file']??'';
         // Nếu thông tin facebook trả về không có Email thì thông báo
@@ -69,8 +70,9 @@ class LoginController extends Controller
                     'username' => $getInfo->id,
                     'email' => $getInfo->email,
                     'name' => $getInfo->name??$getInfo->email,
-                    'password' => bcrypt('*******'),
-                    'status' => 1,
+                    'password' => bcrypt('123456'),
+                    // 'status' => 1,
+                    'provider' => $provider,
                     'created_at' => $created_at,
                     'updated_at' => $updated_at,
                 ];
@@ -79,5 +81,14 @@ class LoginController extends Controller
                return Redirect::to($link);
             }
         }
+    }
+
+    public function logout(Request $request){
+        Auth::guard('web')->logout();
+        if (!Auth::check() && !Auth::guard('web')->check()) {
+            $request->session()->flush();
+            $request->session()->regenerate();
+        }
+        return redirect('/');
     }
 }
