@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Auth\LoginController;
+
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TestSocialController;
 use App\Http\Controllers\ReportController;
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +18,11 @@ use App\Http\Controllers\ReportController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', [HomeController::class, 'index']);
 
+Route::get('test-social', [TestSocialController::class, 'index'])->name('test_social');
+
+Route::get('/social/{provider}', [LoginController::class, 'redirect'])->name('auth.social');
+Route::get('/callback/{provider}', [LoginController::class, 'callback'])->name('auth.social.callback');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('reports', [ReportController::class, 'index']);
