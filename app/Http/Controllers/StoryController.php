@@ -3,21 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Unility\CrawlStory;
+use App\Models\Story;
+use App\Models\StoryDetail;
 
 class StoryController extends Controller
 {
     public function __construct(){
-        $this->module_name = 'Crawl truyện';
+        $this->module_name = 'Truyện';
         parent::__construct();
     }
 
     public function index(){
-        // $story = Story::findOrFail(1);
-        // $story->crawlChapters();
-        // return 'done';
-        // $storyDetail = StoryDetail::findOrFail(1);
-        // $url = 'https://truyenfull.vn/o-re-chue-te';
-        // CrawlStory::crawlTruyenFullChapters($url);
+        // $url = 'https://truyen.tangthuvien.vn/doc-truyen/chue-te/1715547-chuong-66';
+        // dd(\App\Unility\CrawlStoryTool::crawlTruyenTangThuVienContent($url));
+        // $url = 'https://truyen.tangthuvien.vn/doc-truyen/chue-te';
+        // dd(\App\Unility\CrawlStoryTool::crawlTruyenTangThuVienChapters($url));
+        $stories = Story::get();
+        return view('stories.index', compact('stories'));
+    }
+
+    public function show($id){
+        $story = Story::findOrFail($id);
+
+        $this->module_name = 'Truyện ' . $story->name;
+        $chapters = StoryDetail::where('story_id', $id)->get();
+        if(empty($chapters)){
+            return 'Không có chap';
+        }
+        return view('stories.show', compact('chapters', 'story'));
     }
 }

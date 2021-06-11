@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use DB;
-use App\Unility\CrawlStory as CrawlStoryTool;
+use App\Unility\CrawlStoryTool;
 
 class CrawlStory extends Command
 {
@@ -42,12 +42,17 @@ class CrawlStory extends Command
         try{
             $link = $this->argument('link');
             DB::beginTransaction();
-            CrawlStoryTool::crawlTruyenFullChapters($link);
-            $this->info('Da crawl thanh cong');
+            $host = strtolower(parse_url($link)['host'] ?? '');
+            switch($host){
+                case 'truyenfull.vn': CrawlStoryTool::crawlTruyenFullChapters($link); break;
+                case 'truyen.tangthuvien.vn': CrawlStoryTool::crawlTruyenTangThuVienChapters($link); break;
+                default: $this->error("$host chua co tool crawl"); return 0;
+            }
             DB::commit();
+            $this->info("Da crawl $link thanh cong");
         }catch(\Exception $e){
             \Log::error($e);
-            $this->error('Crawl: ', $e->getMessage());
+            $this->error('Loi Crawl: ' . $e->getMessage());
             DB::rollback();
         }
     }

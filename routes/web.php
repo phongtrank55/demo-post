@@ -28,4 +28,5 @@ Route::get('/callback/{provider}', [LoginController::class, 'callback'])->name('
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('reports', [ReportController::class, 'index']);
 
-Route::get('story', [StoryController::class, 'index']);
+Route::get('stories', [StoryController::class, 'index']);
+Route::get('stories/{id}', [StoryController::class, 'show'])->name('stories.show');
