@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestSocialController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\StoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +27,5 @@ Route::get('/social/{provider}', [LoginController::class, 'redirect'])->name('au
 Route::get('/callback/{provider}', [LoginController::class, 'callback'])->name('auth.social.callback');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('reports', [ReportController::class, 'index']);
+
+Route::get('story', [StoryController::class, 'index']);
