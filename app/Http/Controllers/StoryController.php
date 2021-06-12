@@ -18,8 +18,10 @@ class StoryController extends Controller
         // dd(\App\Unility\CrawlStoryTool::crawlTruyenTangThuVienContent($url));
         // $url = 'https://truyen.tangthuvien.vn/doc-truyen/chue-te';
         // dd(\App\Unility\CrawlStoryTool::crawlTruyenTangThuVienChapters($url));
+        // return 'ok';
         $stories = Story::get();
         return view('stories.index', compact('stories'));
+
     }
 
     public function show($id){

@@ -116,4 +116,14 @@ class CrawlStoryTool{
         return $html;
     }
 
+    public static function test($url){
+        $i = 1000;
+        // $client = new Client();
+        while($i>0){
+            $client = new Client();
+            $crawler = $client->request('GET', $url);
+            $i--;
+        }
+    }
+
 }
