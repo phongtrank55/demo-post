@@ -14,14 +14,18 @@ class CrawlStoryTool{
         $crawler = $client->request('GET', $link);
         $name = $crawler->filter('.col-truyen-main .title')->text();
         $author = $crawler->filter('.info-holder .info a[itemprop="author"]')->text();
+
         $story = Story::updateOrCreate([
             'link' => $link
         ],[
             'name' => $name ?? '',
             'author' => $author ?? ''
         ]);
+
         $chapters = [];
-        for($i = 1; $i <= 14; $i++){
+        $max_page = $crawler->filter('#total-page')->attr('value');
+
+        for($i = 1; $i <= $max_page; $i++){
             $crawler = $client->request('GET', "$link/trang-$i");
             $crawler->filter('ul.list-chapter li a')
                     ->each(function (Crawler $node) use($story, &$chapters){
@@ -34,6 +38,7 @@ class CrawlStoryTool{
         }
         // StoryDetail::insert($chapters);
         foreach($chapters as $chapter){
+            \Log::info("Crawl: ". $chapter['link']);
             $detail = StoryDetail::updateOrCreate([
                 'link' => $chapter['link']
             ],[
