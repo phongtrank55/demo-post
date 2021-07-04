@@ -22,11 +22,12 @@ use App\Http\Controllers\StoryController;
 Route::get('/', [HomeController::class, 'index']);
 
 Route::get('test-social', [TestSocialController::class, 'index'])->name('test_social');
-
 Route::get('/social/{provider}', [LoginController::class, 'redirect'])->name('auth.social');
 Route::get('/callback/{provider}', [LoginController::class, 'callback'])->name('auth.social.callback');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('reports', [ReportController::class, 'index']);
+
+Route::get('reports', [ReportController::class, 'index'])->name('report.index');
+Route::get('reports/export-word', [ReportController::class, 'exportWord'])->name('report.export-word');
 
 Route::get('stories', [StoryController::class, 'index']);
 Route::get('stories/{id}', [StoryController::class, 'show'])->name('stories.show');
