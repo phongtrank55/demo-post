@@ -51,4 +51,17 @@ class ReportController extends Controller
         $objWriter->save('Appdividend.docx');
         return response()->download(public_path('Appdividend.docx'));
     }
+
+    public function exportWord2(){
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+        // $phpWord->addParagraphStyle('Heading2', array('alignment' => 'center'));
+        $html = view('report._table')->render();
+        // dd($html);
+        $section = $phpWord->addSection();
+        \PhpOffice\PhpWord\Shared\Html::addHtml($section, $html, false, false);
+        // return view('report._table');
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        $objWriter->save('Appdividend.docx');
+        return response()->download(public_path('Appdividend.docx'));
+    }
 }

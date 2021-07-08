@@ -28,6 +28,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('reports', [ReportController::class, 'index'])->name('report.index');
 Route::get('reports/export-word', [ReportController::class, 'exportWord'])->name('report.export-word');
+Route::get('reports/export-word-2', [ReportController::class, 'exportWord2'])->name('report.export-word-2');
 
 Route::get('stories', [StoryController::class, 'index']);
 Route::get('stories/{id}', [StoryController::class, 'show'])->name('stories.show');
