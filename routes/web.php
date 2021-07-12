@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestSocialController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StoryController;
+use App\Http\Controllers\WatermarkController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,3 +33,5 @@ Route::get('reports/export-word-2', [ReportController::class, 'exportWord2'])->n
 
 Route::get('stories', [StoryController::class, 'index']);
 Route::get('stories/{id}', [StoryController::class, 'show'])->name('stories.show');
+
+Route::get('watermark', [WatermarkController::class, 'index']);
