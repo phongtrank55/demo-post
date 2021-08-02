@@ -1,0 +1,154 @@
+#tinymce .sudo_spoiler_wrap {
+    background: #eee;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+#tinymce .sudo_spoiler_title {
+    color: #e3121e;
+    font-weight: bold;
+    line-height: 0.7em;
+    padding-bottom: 1em;
+    padding-left: 0.5em;
+    padding-right: 0.3em;
+    cursor: pointer;
+    display: inline;
+}
+#tinymce .sudo_spoiler_main {
+    font-style: italic;
+    padding: 5px;
+    border-left: 1px solid #eee;
+}
+figure.media-image {
+    display: table;
+    margin: 10px auto;
+}
+#tinymce table.mgg-voucher-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    max-width: 100%;
+}
+#tinymce table.mgg-voucher-table th {
+    padding: 10px 5px;
+    border: 1px solid #ddd;
+    background: #378f00;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+#tinymce table.mgg-voucher-table td {
+    padding: 5px;
+    border: 1px solid #ddd;
+    background: #fff;
+}
+#tinymce table.mgg-voucher-table tr:nth-child(2n+2) td {
+    background: #f8f8f8;
+}
+#tinymce table.mgg-voucher-table tr:hover td {
+    background: #eee;
+}
+
+#tinymce p.caption-image {
+    text-align: center;
+    margin: 0;
+}
+#tinymce .cs-row {
+    margin-bottom: 10px;
+    width: 100%;
+    border: 2px dotted #aaa;
+}
+#tinymce .cs-row p {
+    margin: 0px;
+}
+#tinymce .cs-row-pri {
+    background: #fafafa;
+    overflow: hidden;
+}
+#tinymce .cs-row-exp {
+    background: #eee;
+    overflow: hidden;
+}
+#tinymce .cs-row-pri:after, #tinymce .cs-row-exp:after {
+    content: " ";
+    clear: both;
+    height: 0px;
+}
+#tinymce .cs-col-pri-1 {
+    width: 10%;
+    float: left;
+    padding: 0px 2%;
+
+    color: #f63;
+    font-size: 20px;
+}
+#tinymce .cs-col-pri-2 {
+    width: 50%;
+    float: left;
+    padding: 10px 2%;
+}
+#tinymce .cs-col-pri-3 {
+    width: 28%;
+    float: left;
+    padding: 10px 2%;
+}
+#tinymce .cs-col-exp-1 {
+    width: 64%;
+    float: left;
+    padding: 10px 2%;
+}
+#tinymce .cs-col-exp-2 {
+    width: 28%;
+    float: left;
+    padding: 10px 2%;
+}
+.cs-more-wrap {
+    text-align: right;
+    padding: 10px 10px 0px 0px;
+}
+.clear {
+    height: 0px;
+}
+.cs-tags {
+    text-align: center;
+}
+.cs-tag {
+    display: inline-block;
+    padding: 2px 5px;
+    margin: 0px 5px 5px 0px;
+    border-radius: 3px;
+    color: #fff;
+}
+.cs-tag-emotions {
+    background: #af5d9c;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+.cs-tag-check {
+    background: #00b034;
+    font-size: 13px;
+}
+.cs-tag-expired {
+    background: #e8641b;
+    font-size: 13px;
+}
+.cs-des {
+    font-size: 15px;
+    font-weight: bold;
+}
+.coupon-hidden {
+    display: none;
+}
+.tplCaption  {
+    border: 1px solid #eee;
+}
+.tplCaption td {
+    border: 1px solid #eee;
+    padding: 0;
+}
+#tinymce p{padding-bottom: 7px;}
+.tplCaption {
+    border: 1px solid #eee;
+}
+.tplCaption td {
+    border: 1px solid #eee;
+    padding: 0;
+}

@@ -46,6 +46,7 @@ class CrawlStory extends Command
             switch($host){
                 case 'truyenfull.vn': CrawlStoryTool::crawlTruyenFullChapters($link); break;
                 case 'truyen.tangthuvien.vn': CrawlStoryTool::crawlTruyenTangThuVienChapters($link); break;
+                case 'bachngocsach.com': CrawlStoryTool::crawlBachNgocSachChapters($link); break;
                 default:
                     // $this->error("$host chua co tool crawl");
                     CrawlStoryTool::test($link);

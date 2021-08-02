@@ -17,6 +17,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Default Cloud Filesystem Disk
+    |--------------------------------------------------------------------------
+    |
+    | Many applications store files both locally and in the cloud. For this
+    | reason, you may specify a default "cloud" driver here. This driver
+    | will be bound as the Cloud disk implementation in the container.
+    |
+    */
+
+    'cloud' => env('FILESYSTEM_CLOUD', 's3'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Filesystem Disks
     |--------------------------------------------------------------------------
     |
@@ -51,7 +64,16 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
-
+        'vhost' => [
+            'driver' => 's3',
+            'key' => env('VHOST_KEY','ZLS6TYX8V88O8EXDT8FC'),
+            'secret' => env('VHOST_SECRET','IfkpyICeyOZX7C7hKstfiPkvgUlyxyZzpAYmJLtW'),
+            'region' => env('VHOST_REGION',''),
+            'bucket' => env('VHOST_BUCKET','chanhtuoi'),
+            'endpoint' => env('VHOST_ENDPOINT','https://vn1.vdrive.vn'),
+            'domain' => env('VHOST_DOMAIN','https://cdn.chanhtuoi.com'),
+            'folder' => env('VHOST_FOLDER','uploads'), //ưu tiên thay đổi ngoài .env - đặt tên theo domain kiểu sudo-vn (đổi . thành -)
+        ],
     ],
 
     /*

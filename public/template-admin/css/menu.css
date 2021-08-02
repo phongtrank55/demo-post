@@ -1,0 +1,230 @@
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+.content-menu{
+	width: 550px;
+	float: left;
+	border-radius: 4px;
+	border: 1px solid #ddd;
+	padding: 10px 0 30px;
+	margin-bottom: 20px;
+}
+.content-menu ul{
+	list-style-type: none;
+}
+.content-menu ul li{
+	display: block;
+	margin: 5px;
+	padding: 5px;
+	border: 1px solid #cccccc;
+    color: #0088cc;
+    background: #eeeeee;
+    cursor: pointer;
+}
+.add-menu,.manager-menu{
+	float: left;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 0 1%;
+}
+.add-menu{
+	width: 100%;
+	padding: 0 10px;
+	border-radius: 0;
+	display: none;
+}
+.action-menu{
+	width: 400px;
+	float: left;
+}
+.manager-menu{
+	float: left;
+    width: 600px;
+    padding: 0 1%;
+    margin-left: 20px;
+}
+.add-menu h5 {
+	padding-bottom: 10px;
+	font-size: 14px;
+	font-weight: bold;
+}
+.manager-menu h5{
+	padding-bottom: 10px;
+	font-size: 16px;
+	font-weight: bold;
+}
+.add-menu input {
+	height: 30px;
+	width: 100%;
+}
+.add-menu select {
+	height: 30px;
+	width: 100%;
+}
+.add-menu label{
+	width: 100px;
+	float: left;
+}
+.add-menu .add{
+	float: right;
+	margin-top: 10px;
+	padding-bottom: 10px;
+}
+.add-menu .add a{
+	color: #555;
+    border: 1px solid #ccc;
+    background: #f7f7f7;
+    box-shadow: 0 1px 0 #ccc;
+    padding: 5px 15px;
+	border-radius: 4px;
+}
+.add-menu .add img{
+	display: none;
+}
+.p-action{
+	display: inline;
+    float: right;
+    margin-right: 5px;
+    position: absolute;
+    top: 9px;
+    right: 10px;
+    z-index: 10;
+}
+.p-action .a1{
+	color: #2196f3;
+}
+.p-action .a2{
+	color: red;
+	padding: 0 5px;
+}
+.option-menu{
+	width: 100%;
+	float: left;
+	border: 1px solid #ccc;
+	border-top: none;
+	background: #fafafa;
+	color: #333;
+}
+.option-menu:first-child{
+	border-top: 1px solid #ccc;
+}
+.option-menu p {
+	text-align: left;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-top: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.option-menu p i{
+	float: right;
+	padding-right: 10px;
+}
+.dd { position: relative; display: block; margin: 0; padding: 0; max-width: 90%;
+    margin-left: 2%; list-style: none; font-size: 13px; line-height: 20px; }
+
+.dd-list { display: block; position: relative; margin: 0; padding: 0; list-style: none; }
+.dd-list .dd-list { padding-left: 30px; }
+.dd-collapsed .dd-list { display: none; }
+
+.dd-item,
+.dd-empty,
+.dd-placeholder {
+	clear: both; 
+	display: block; 
+	position: relative; 
+	margin: 0; 
+	padding: 0; 
+	min-height: 20px; 
+	font-size: 13px; 
+	line-height: 20px; 
+}
+
+.dd-handle {
+	cursor: pointer; 
+	display: block; 
+	margin: 5px 0 0; 
+	padding: 7px 80px 7px 10px; 
+	color: #333; 
+	text-decoration: none; 
+	border: 1px solid #ccc;
+    background: #fafafa;
+    background: -webkit-linear-gradient(top, #fafafa 0%, #eee 100%);
+    background:    -moz-linear-gradient(top, #fafafa 0%, #eee 100%);
+    background:         linear-gradient(top, #fafafa 0%, #eee 100%);
+    box-sizing: border-box; 
+    -moz-box-sizing: border-box;
+}
+.dd-handle:hover { 
+	color: #2ea8e5; 
+	background: #fff; 
+}
+
+.dd-item > button { 
+	display: block; 
+	position: relative; 
+	cursor: pointer; 
+	float: left; 
+	width: 25px; 
+	height: 20px;
+	margin: 5px 0; 
+	padding: 0; 
+	text-indent: 100%; 
+	white-space: nowrap; 
+	overflow: hidden; 
+	border: 0; 
+	background: transparent; 
+	font-size: 12px; 
+	line-height: 1; 
+	text-align: center; 
+	font-weight: bold; 
+}
+.dd-item > button:before { 
+	content: '+'; display: block; 
+	position: absolute; 
+	width: 100%; 
+	text-align: center; 
+	text-indent: 0; 
+}
+.dd-item > button[data-action="collapse"]:before { 
+	content: '-'; 
+}
+
+.dd-placeholder,
+.dd-empty { 
+	margin: 5px 0; 
+	padding: 0; 
+	min-height: 30px; 
+	background: #f2fbff; 
+	border: 1px dashed #b6bcbf; 
+	box-sizing: border-box; 
+	-moz-box-sizing: border-box; 
+}
+.dd-empty { 
+	border: 1px dashed #bbb; min-height: 100px; background-color: #e5e5e5;
+    background-image: -webkit-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
+                      -webkit-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+    background-image:    -moz-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
+                         -moz-linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+    background-image:         linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff),
+                              linear-gradient(45deg, #fff 25%, transparent 25%, transparent 75%, #fff 75%, #fff);
+    background-size: 60px 60px;
+    background-position: 0 0, 30px 30px;
+}
+
+.dd-dragel { position: absolute; pointer-events: none; z-index: 9999; }
+.dd-dragel > .dd-item .dd-handle { margin-top: 0; }
+.dd-dragel .dd-handle {
+    -webkit-box-shadow: 2px 4px 6px 0 rgba(0,0,0,.1);
+            box-shadow: 2px 4px 6px 0 rgba(0,0,0,.1);
+}
+.edit-menu-custom{
+	margin-bottom: 10px;
+	position: relative;
+    z-index: 10000;
+}

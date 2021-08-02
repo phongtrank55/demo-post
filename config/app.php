@@ -95,6 +95,7 @@ return [
 
     'fallback_locale' => 'en',
 
+    'storage_type' => 'vhost',
     /*
     |--------------------------------------------------------------------------
     | Faker Locale
