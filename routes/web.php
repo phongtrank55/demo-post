@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestSocialController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StoryController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\WatermarkController;
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,12 @@ Route::get('stories', [StoryController::class, 'index']);
 Route::get('stories/{id}', [StoryController::class, 'show'])->name('stories.show');
 
 Route::get('watermark', [WatermarkController::class, 'index']);
+Route::get('watermark/run', [WatermarkController::class, 'run']);
+
+//route cho media
+Route::name('media.')->prefix('media')->group(function() {
+    Route::get('library', [MediaController::class, 'library'])->name('library');
+    Route::post('store', [MediaController::class, 'store'])->name('store');
+    Route::post('update', [MediaController::class, 'update'])->name('update');
+    Route::post('search', [MediaController::class, 'search'])->name('search');
+});

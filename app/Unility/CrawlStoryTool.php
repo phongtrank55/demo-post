@@ -59,7 +59,8 @@ class CrawlStoryTool{
                 $n->parentNode->removeChild($n);
             }
         });
-        return str_replace("\n", '<br />', $content->html());
+        // return str_replace("\n", '<br />', $content->html());
+        return $content->html();
     }
 
     public static function crawlTruyenTangThuVienChapters($link){
@@ -116,9 +117,69 @@ class CrawlStoryTool{
         $client = new Client();
         $crawler = $client->request('GET', $link_chapter);
         $content = $crawler->filter('.chapter-c-content .box-chap');
-        $html = preg_replace("/[\n\r]/", '<br />', $content->html());
-        $html = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;', $html);
+        $html = $content->html();
+        // $html = preg_replace("/[\n\r]/", '<br />', $content->html());
+        // $html = str_replace("\t", '&nbsp;&nbsp;&nbsp;&nbsp;', $html);
         return $html;
+    }
+
+    public static function crawlBachNgocSachChapters($link){
+        $client = new Client();
+        $crawler = $client->request('GET', $link);
+        $name = $crawler->filter('#truyen-title')->text();
+        $author = $crawler->filter('#tacgia a')->text();
+
+        $story = Story::updateOrCreate([
+            'link' => $link
+        ],[
+            'name' => $name ?? '',
+            'author' => $author ?? ''
+        ]);
+
+        $url_host = parse_url($link);
+        $url_host = $url_host['scheme'] . '://' . $url_host['host'];
+
+        $link_chapters = "$link/muc-luc?page=all";
+        $chapters = [];
+
+        $crawler = $client->request('GET', $link_chapters);
+        $crawler->filter('ul li.mucluc-row .mucluc-chuong a')
+                ->each(function (Crawler $node) use($url_host, &$chapters, $story){
+                    $chapters[] = [
+                                    'name' => $node->text(),
+                                    'link' => $url_host . $node->attr('href'),
+                                    'story_id' => $story->id
+                                ];
+                });
+        foreach($chapters as $chapter){
+            // \Log::info("Crawl: ". $chapter['link']);
+            $retry = 3;
+            while(1){
+                \Log::info("Crawl: ". $chapter['link']);
+                try{
+                    $detail = StoryDetail::updateOrCreate([
+                        'link' => $chapter['link']
+                    ],[
+                        'name' => $chapter['name'],
+                        'story_id' => $chapter['story_id'],
+                        'content' => self::crawlBachNgocSachContent($chapter['link'])
+                    ]);
+                    break;
+                } catch(\Exception $e){
+                    \Log::error("Loi crawl: ". $e->getMessage());
+                    $retry--;
+                    if($retry == 0){
+                        throw $e;
+                    }
+                }
+            }
+        }
+    }
+
+    public static function crawlBachNgocSachContent($link_chapter){
+        $client = new Client();
+        $crawler = $client->request('GET', $link_chapter);
+        return $crawler->filter('#noi-dung')->html();
     }
 
     public static function test($url){
