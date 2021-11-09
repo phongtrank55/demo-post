@@ -166,7 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Elasticquent\ElasticquentServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -227,7 +227,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Es' => Elasticquent\ElasticquentElasticsearchFacade::class,
     ],
+
+    // API Voice
+    'API_KEY_VOICE_RSS' => env('API_KEY_VOICE_RSS', 'aa308fedae5343e6bce173be7fc112bf')
 
 ];

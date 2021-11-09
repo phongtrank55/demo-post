@@ -10,6 +10,8 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\WatermarkController;
+use App\Http\Controllers\SpeechController;
+use App\Http\Controllers\ArticleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,10 +40,15 @@ Route::get('stories/{id}', [StoryController::class, 'show'])->name('stories.show
 Route::get('watermark', [WatermarkController::class, 'index']);
 Route::get('watermark/run', [WatermarkController::class, 'run']);
 
-//route cho media
+// route cho media
 Route::name('media.')->prefix('media')->group(function() {
     Route::get('library', [MediaController::class, 'library'])->name('library');
     Route::post('store', [MediaController::class, 'store'])->name('store');
     Route::post('update', [MediaController::class, 'update'])->name('update');
     Route::post('search', [MediaController::class, 'search'])->name('search');
 });
+
+// Route speech
+Route::get('speech', [SpeechController::class, 'index'])->name('speech.index');
+// Route Article
+Route::get('articles', [ArticleController::class, 'index']);

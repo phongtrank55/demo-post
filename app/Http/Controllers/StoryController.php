@@ -32,7 +32,13 @@ class StoryController extends Controller
         $story = Story::findOrFail($id);
 
         $this->module_name = 'Truyện ' . $story->name;
-        $chapters = StoryDetail::where('story_id', $id)->get();
+        $chapters = StoryDetail::where('story_id', $id)
+                    // ->where('id', '>', 6253)
+                    // ->where('content', 'like', '%sư sư%')
+                    // ->where('content', 'like', '%quyên nhi%')
+                    // ->where('content', 'like', '%ở rể%')
+                    ->where('content', 'like', '%Văn nhân bất nhị%')
+                    ->get();
         if(empty($chapters)){
             return 'Không có chap';
         }

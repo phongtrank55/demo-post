@@ -8,7 +8,6 @@ use Goutte\Client;
 use Symfony\Component\DomCrawler\Crawler;
 
 class CrawlStoryTool{
-
     public static function crawlTruyenFullChapters($link){
         $client = new Client();
         $crawler = $client->request('GET', $link);
@@ -39,12 +38,14 @@ class CrawlStoryTool{
         // StoryDetail::insert($chapters);
         foreach($chapters as $chapter){
             \Log::info("Crawl: ". $chapter['link']);
+            $content = self::crawlTruyenFullContent($chapter['link']);
             $detail = StoryDetail::updateOrCreate([
                 'link' => $chapter['link']
             ],[
                 'name' => $chapter['name'],
                 'story_id' => $chapter['story_id'],
-                'content' => self::crawlTruyenFullContent($chapter['link'])
+                'content' => $content,
+                // 'audio' => SpeechVietnamese::speech($content)
             ]);
         }
     }
