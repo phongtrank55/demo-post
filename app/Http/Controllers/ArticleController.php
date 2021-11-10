@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Articles\SearchRepository;
+
 
 class ArticleController extends Controller
 {
@@ -12,14 +14,15 @@ class ArticleController extends Controller
         parent::__construct();
     }
 
-    public function index(){
+    public function index(SearchRepository $searchRepository){
 
-        Article::createIndex($shards = null, $replicas = null);
+    //     Article::createIndex($shards = null, $replicas = null);
 
-    Article::putMapping($ignoreConflicts = true);
+    // Article::putMapping($ignoreConflicts = true);
 
-    Article::addAllToIndex();
-        $articles = Article::get();
+    // Article::addAllToIndex();
+        // $articles = Article::get();
+        $articles = $searchRepository->search('eos');
         return view('articles.index', compact('articles'));
     }
 

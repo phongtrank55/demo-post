@@ -46,12 +46,25 @@ services:
 
   # elastic search
   elasticsearch:
-    container_name: ${NAME_CONTAINER}_es_single
+    container_name: ${NAME_CONTAINER}_es-single
     image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
     environment:
-      - xpack.security.enabled=false
       - "discovery.type=single-node"
     volumes:
       - ./.docker/elasticsearch/data01:/usr/share/elasticsearch/data
     ports:
       - "${PORTS_ELASTICSEARCH}:9200"
+      - 9300:9300
+
+  # kibana
+  kibana:
+    container_name: ${NAME_CONTAINER}_kibana-single
+    image: docker.elastic.co/kibana/kibana:7.15.1
+    environment:
+      - "ELASTICSEARCH_HOSTS=http://${NAME_CONTAINER}_es-single:${PORTS_ELASTICSEARCH}"
+    volumes:
+      - ./.docker/elasticsearch/data01:/usr/share/elasticsearch/data
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
