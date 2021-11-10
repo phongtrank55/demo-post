@@ -36,6 +36,8 @@ class ElasticsearchRepository implements SearchRepository
                     'multi_match' => [
                         'fields' => ['title^5', 'body', 'tags'],
                         'query' => $query,
+                        "type" => "best_fields",
+                        "operator"=> "and"
                     ],
                 ],
             ],

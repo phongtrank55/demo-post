@@ -10,7 +10,7 @@ class ElasticsearchObserver
 
     public function __construct(Client $elasticsearchClient)
     {
-        // ...
+        $this->elasticsearchClient = $elasticsearchClient;
     }
 
     public function saved($model)

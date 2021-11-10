@@ -22,7 +22,7 @@ class ArticleController extends Controller
 
     // Article::addAllToIndex();
         // $articles = Article::get();
-        $articles = $searchRepository->search('eos');
+        $articles = $searchRepository->search('tivi tiết kiệm điện');
         return view('articles.index', compact('articles'));
     }
 

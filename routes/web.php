@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestSocialController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StoryController;
 use App\Http\Controllers\MediaController;
@@ -24,7 +25,7 @@ use App\Http\Controllers\ArticleController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-
+Route::get('test', [TestController::class, 'index'])->name('test');
 Route::get('test-social', [TestSocialController::class, 'index'])->name('test_social');
 Route::get('/social/{provider}', [LoginController::class, 'redirect'])->name('auth.social');
 Route::get('/callback/{provider}', [LoginController::class, 'callback'])->name('auth.social.callback');
