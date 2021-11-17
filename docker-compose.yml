@@ -62,9 +62,7 @@ services:
     image: docker.elastic.co/kibana/kibana:7.15.1
     environment:
       - "ELASTICSEARCH_HOSTS=http://${NAME_CONTAINER}_es-single:${PORTS_ELASTICSEARCH}"
-    volumes:
-      - ./.docker/elasticsearch/data01:/usr/share/elasticsearch/data
     ports:
-      - 5601:5601
+      - ${PORTS_ELASTICSEARCH}:5601
     depends_on:
       - elasticsearch
