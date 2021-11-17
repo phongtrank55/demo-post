@@ -35,9 +35,18 @@ class AppServiceProvider extends ServiceProvider
     private function bindSearchClient()
     {
         $this->app->bind(Client::class, function ($app) {
-            return ClientBuilder::create()
-                ->setHosts(config('services.search.hosts'))
-                ->build();
+            // return ClientBuilder::create()
+                // ->setHosts(config('services.search.hosts'))
+
+                // ->setApikey('Qz_QKX0BfjiEAb9uVyUP', 'SUD960LUQt-F-ASNoGvPIg')
+                // ->build();
+                $config = [
+                    'hosts'     => config('services.search.hosts'),
+                    'retries'   => 1,
+                    'apikey'   => ['Qz_QKX0BfjiEAb9uVyUP', 'SUD960LUQt-F-ASNoGvPIg']
+                ];
+
+                return ClientBuilder::fromConfig($config);
         });
     }
 

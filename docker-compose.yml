@@ -15,7 +15,8 @@ services:
       - .docker/nginx/app.conf:/etc/nginx/conf.d/app.conf
       - .docker/nginx/nginx.conf:/etc/nginx/nginx.conf
     command: nginx
-
+    networks:
+      - my_network
   php-fpm:
     image: hungvietgiang/php74-centos7:1.2
     container_name: ${NAME_CONTAINER}_php-fpm
@@ -30,7 +31,8 @@ services:
     stdin_open: true
     tty: true
     command: php-fpm
-
+    networks:
+      - my_network
   mysqldb:
     image: mysql:5.7
     container_name: ${NAME_CONTAINER}_mysql
@@ -43,26 +45,32 @@ services:
     tty: true
     volumes:
       - ./.docker/mysql/database:/var/lib/minesql
+    networks:
+      - my_network
+networks:
+  my_network:
+    # driver: bridge
+    external:
+      name: sudo-elasticsearch_my_network
+  # # elastic search
+  # elasticsearch:
+  #   container_name: ${NAME_CONTAINER}_es-single
+  #   image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
+  #   environment:
+  #     - "discovery.type=single-node"
+  #   volumes:
+  #     - ./.docker/elasticsearch/data01:/usr/share/elasticsearch/data
+  #   ports:
+  #     - "${PORTS_ELASTICSEARCH}:9200"
+  #     - 9300:9300
 
-  # elastic search
-  elasticsearch:
-    container_name: ${NAME_CONTAINER}_es-single
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
-    environment:
-      - "discovery.type=single-node"
-    volumes:
-      - ./.docker/elasticsearch/data01:/usr/share/elasticsearch/data
-    ports:
-      - "${PORTS_ELASTICSEARCH}:9200"
-      - 9300:9300
-
-  # kibana
-  kibana:
-    container_name: ${NAME_CONTAINER}_kibana-single
-    image: docker.elastic.co/kibana/kibana:7.15.1
-    environment:
-      - "ELASTICSEARCH_HOSTS=http://${NAME_CONTAINER}_es-single:${PORTS_ELASTICSEARCH}"
-    ports:
-      - ${PORTS_ELASTICSEARCH}:5601
-    depends_on:
-      - elasticsearch
+  # # kibana
+  # kibana:
+  #   container_name: ${NAME_CONTAINER}_kibana-single
+  #   image: docker.elastic.co/kibana/kibana:7.15.1
+  #   environment:
+  #     - "ELASTICSEARCH_HOSTS=http://${NAME_CONTAINER}_es-single:${PORTS_ELASTICSEARCH}"
+  #   ports:
+  #     - ${PORTS_ELASTICSEARCH}:5601
+  #   depends_on:
+  #     - elasticsearch
